@@ -1,0 +1,36 @@
+
+
+Here is a typical output for the constant flow-rate case,
+
+14750  Volflow X  1.4710E+01   1.4826E-01   2.4241E-09   3.0000E-03   3.0000E-03  
+
+which can be found in the logfile. The entries in each column are defined below.
+
+col 1:  step number
+col 2:  keyword
+col 3:  direction of periodicity
+col 4:  time of simulation (i.e., t=14.71)
+col 5:  effective pressure drop at this time 
+        (assuming ffx=0, else, drop = ffx + col 5)
+col 6:  target flow rate - current rate, prior to correction.
+col 7:  current flow rate, prior to correction.
+col 8:  flow rate, after correction.
+
+A typical usage is:
+
+grep volflow logfile > t.v 
+
+to collect the time history of these parameters.
+
+You can plot pressure drop vs. time via gnuplot:
+
+gnuplot
+>> plot 't.v' u 4:5 w l
+
+etc.
+
+NOTE: there may need to be a scale factor associated with density, rho. 
+I always use rho=1, in which case no scale factor is required.
+
+
+
